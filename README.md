@@ -1,6 +1,6 @@
 <div align="center">
   
-# PRESCRIPTO 👨‍⚕️🏥🤒
+# Curely 👨‍⚕️🏥🤒
 </div>
 
 This full stack appointment booking system can be used by a doctor or a hospital. Because in this project I have created 3 level of authentication. 1st one is for Patients, so that patient can login on the website, book appointment with doctor and manage the booked appointment. 2nd one is doctor login, so that doctor can login and check the appointment and their earning. Doctor can update their profile also from dashboard. 3rd one is Admin Dashboard where admin can manages the appointment and admin can also manage the doctor profile.
@@ -11,9 +11,9 @@ This full stack appointment booking system can be used by a doctor or a hospital
 
 ## LIVE - DEMO 🌐
   
-**UI** 👉 [LINK](https://prescripto-frontend-lovat.vercel.app)
+**UI** 👉 [LINK](https://Curely-frontend-lovat.vercel.app)
 
-**Admin Dashboard** 👉 [LINK](https://prescripto-admin-beta.vercel.app)
+**Admin Dashboard** 👉 [LINK](https://Curely-admin-beta.vercel.app)
 </div>
 
 <br/><hr/><br/>
@@ -50,7 +50,7 @@ A **super passionate** Rwandan **software engineer** 🤗 And a true cheese 🧀
 
 ## License 📝
 
-This project is distributed under [MIT license](https://github.com/elyse502/prescripto/blob/main/LICENSE). Enjoy! 🎉
+This project is distributed under [MIT license](https://github.com/elyse502/Curely/blob/main/LICENSE). Enjoy! 🎉
 
 <br /><br />
 
