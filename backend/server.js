@@ -13,14 +13,35 @@ const port = process.env.PORT || 4000;
 connectDB();
 connectCloudinary();
 
-// middlewares
+// --- CORS Configuration ---
+const allowedOrigins = [
+  'https://curely-client.vercel.app',
+  'https://curely-admin.vercel.app'
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    // or if the origin is in our allowed list
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'atoken', 'dtoken'] // Added common custom headers for your routers
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Handle Preflight requests for all routes
+app.options('*', cors(corsOptions)); 
+
+// --- Other Middlewares ---
 app.use(express.json());
-app.use(cors({
-  origin: [
-    'https://curely-client.vercel.app',
-    'https://curely-admin.vercel.app'
-  ]
-}));
 
 // api endpoints
 app.use("/api/admin", adminRouter);
@@ -31,4 +52,4 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
-app.listen(port, () => console.log("Server started", port));
+app.listen(port, () => console.log("Server started on port", port));
