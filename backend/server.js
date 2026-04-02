@@ -15,7 +15,12 @@ connectCloudinary();
 
 // middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://curely-client.vercel.app',
+    'https://curely-admin.vercel.app'
+  ]
+}));
 
 // api endpoints
 app.use("/api/admin", adminRouter);
