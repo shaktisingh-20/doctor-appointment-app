@@ -27,6 +27,7 @@ const Login = () => {
           localStorage.setItem("token", data.token);
           setToken(data.token);
           toast.success("Account created successfully!");
+          navigate("/");
         } else {
           toast.error(data.message);
         }
@@ -39,6 +40,7 @@ const Login = () => {
           localStorage.setItem("token", data.token);
           setToken(data.token);
           toast.success("Logged in successfully!");
+          navigate("/");
         } else {
           toast.error(data.message);
         }
@@ -48,8 +50,6 @@ const Login = () => {
     }
   };
 
-  // Only redirect if token exists AND user deliberately logged in
-  // not on initial page load
   useEffect(() => {
     if (token) {
       navigate("/");
