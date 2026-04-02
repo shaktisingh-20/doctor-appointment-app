@@ -2,20 +2,17 @@ import express from "express";
 import cors from "cors";
 import dotenv from 'dotenv';
 dotenv.config();
-console.log("ENV:", process.env.MONGODB_URI);
 import connectDB from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
 import adminRouter from "./routes/adminRoute.js";
 import doctorRouter from "./routes/doctorRoute.js";
 import userRouter from "./routes/userRoute.js";
 
-// app config
 const app = express();
 const port = process.env.PORT || 4000;
 connectDB();
 connectCloudinary();
 
-// --- CORS Configuration ---
 const allowedOrigins = [
   'https://curely-client.vercel.app',
   'https://curely-admin.vercel.app'
@@ -23,8 +20,6 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    // or if the origin is in our allowed list
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -33,19 +28,13 @@ const corsOptions = {
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'atoken', 'dtoken'] // Added common custom headers for your routers
+  allowedHeaders: ['Content-Type', 'Authorization', 'atoken', 'dtoken', 'token']
 };
 
-// Apply CORS middleware
 app.use(cors(corsOptions));
-
-// Handle Preflight requests for all routes
-app.options('*', cors(corsOptions)); 
-
-// --- Other Middlewares ---
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
-// api endpoints
 app.use("/api/admin", adminRouter);
 app.use("/api/doctor", doctorRouter);
 app.use("/api/user", userRouter);
